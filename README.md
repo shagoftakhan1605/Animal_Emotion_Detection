@@ -32,13 +32,13 @@ Each image is of size 224x224 pixels in JPG format.
 
 ## Project Structure
 
-animal-emotion-detection/
-├── animal_emotions/ # Dataset directory
-├── models/ # Directory to save trained models
-├── notebooks/ # Jupyter notebooks for exploration and prototyping
-├── scripts/ # Python scripts for training and evaluation
-├── README.md # Project documentation
-└── requirements.txt # Required Python packages
+animal-emotion-detection/ <br>
+├── animal_emotions/ # Dataset directory <br>
+├── models/ # Directory to save trained models <br>
+├── notebooks/ # Jupyter notebooks for exploration and prototyping <br>
+├── scripts/ # Python scripts for training and evaluation <br>
+├── README.md # Project documentation <br>
+└── requirements.txt # Required Python packages <br>
 
 ## Installation
 
@@ -53,17 +53,21 @@ animal-emotion-detection/
 
 ### Install dependencies
 
-To install the required packages, run:
+To install the required packages, run: <br>
+```
 pip install -r requirements.txt
+```
 
 ## Usage
 ### Training the Model
-Run the following command to start training the model:
+Run the following command to start training the model: <br>
+```
 python scripts/train_model.py
+```
 
 ### Evaluating the Model
-To evaluate the model on the test dataset, use:
-python scripts/evaluate_model.py
+To evaluate the model on the test dataset, use: <br>
+```python scripts/evaluate_model.py```
 
 ## Model Architecture
 The model is based on the VGG16 architecture pre-trained on ImageNet. The top layers are replaced with custom layers suitable for the emotion detection task.
