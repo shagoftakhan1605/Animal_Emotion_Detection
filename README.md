@@ -36,8 +36,8 @@ Each image is of size 224x224 pixels in JPG format.
 animal-emotion-detection/ <br>
 ├── animal_emotions/ # Dataset directory <br>
 ├── models/ # Directory to save trained models <br>
-├── notebooks/ # Jupyter notebooks for exploration and prototyping <br>
 ├── scripts/ # Python scripts for training and evaluation <br>
+├── gui/ # Python code for implementation of GUI <br>
 ├── README.md # Project documentation <br>
 └── requirements.txt # Required Python packages <br>
 
@@ -51,6 +51,7 @@ animal-emotion-detection/ <br>
 - OpenCV
 - NumPy
 - Scikit-learn
+- Pillow 8.3 or higher
 
 ### Install dependencies
 
