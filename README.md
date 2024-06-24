@@ -9,7 +9,6 @@ It also implements a graphical user interface (GUI) using Tkinter and OpenCV in 
 - [Dataset](#dataset)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Model Architecture](#model-architecture)
 - [Training](#training)
 - [Evaluation](#evaluation)
@@ -59,17 +58,6 @@ To install the required packages, run: <br>
 ```
 pip install -r requirements.txt
 ```
-
-## Usage
-### Training the Model
-Run the following command to start training the model: <br>
-```
-python scripts/train_model.py
-```
-
-### Evaluating the Model
-To evaluate the model on the test dataset, use: <br>
-```python scripts/evaluate_model.py```
 
 ## Model Architecture
 The model is based on the VGG16 architecture pre-trained on ImageNet. The top layers are replaced with custom layers suitable for the emotion detection task.
