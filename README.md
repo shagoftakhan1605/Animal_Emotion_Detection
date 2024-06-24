@@ -1,7 +1,7 @@
 # Animal_Emotion_Detection
 
-This project aims to detect animal emotions such as "Angry", "Sad", and "Happy" using a convolutional neural network (CNN) built with TensorFlow and Keras. The dataset comprises images categorized into three emotions, with separate directories for training, validation, and testing. <br>
-This project also implements a graphical user interface (GUI) using Tkinter and OpenCV in Python for real-time animal emotion detection using a pre-trained deep learning model (animal_emotion_detection_model.keras). The application allows users to either open a camera for live detection or upload an image file for emotion analysis.
+This project aims to detect animal emotions such as "Angry", "Sad", and "Happy" using a convolutional neural network (CNN) built with TensorFlow and Keras. The dataset comprises images categorized into three emotions, with separate directories for training, validation, and testing. <br> <br>
+It also implements a graphical user interface (GUI) using Tkinter and OpenCV in Python for real-time animal emotion detection using a pre-trained deep learning model (animal_emotion_detection_model.keras). The application allows users to either open a camera for live detection or upload an image file for emotion analysis.
 
 ## Table of Contents
 
