@@ -19,6 +19,9 @@ test_dir = os.path.join(dataset_path, 'test')
 img_height, img_width = 224, 224
 batch_size = 32
 
+# Number of classes
+num_classes = 3  # Added: Specify number of classes
+
 # ImageDataGenerator for data augmentation and preprocessing
 train_datagen = ImageDataGenerator(
     rescale=1./255,      # Normalize pixel values to [0, 1]
@@ -68,7 +71,7 @@ x = base_model.output
 x = Flatten()(x)
 x = Dense(512, activation='relu')(x)
 x = Dropout(0.5)(x)
-predictions = Dense(3, activation='softmax')(x)  # 3 classes: Angry, Sad, Happy
+predictions = Dense(num_classes, activation='softmax')(x)  # Updated: 3 classes: Angry, Sad, Happy
 
 # Define the full model
 model = Model(inputs=base_model.input, outputs=predictions)
@@ -80,7 +83,7 @@ model.compile(optimizer=Adam(learning_rate=0.0001),
 
 # Define callbacks
 early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-model_checkpoint = ModelCheckpoint('best_model.h5', monitor='val_loss', save_best_only=True)
+model_checkpoint = ModelCheckpoint('best_model.keras', monitor='val_loss', save_best_only=True)  # Updated: Changed to .keras
 
 # Train the model
 history = model.fit(
@@ -92,6 +95,9 @@ history = model.fit(
     callbacks=[early_stopping, model_checkpoint]
 )
 
+# Save the trained model
+model.save('animal_emotion_detection_model.keras')  # Updated: Changed to .keras
+
 # Evaluate the model on the test set
 test_loss, test_acc = model.evaluate(test_generator, steps=test_generator.samples // batch_size)
 print(f'Test accuracy: {test_acc * 100:.2f}%')
@@ -102,8 +108,6 @@ predictions = model.predict(test_generator, steps=test_generator.samples // batc
 predicted_classes = tf.argmax(predictions, axis=-1)
 
 # Print the classification report
-from sklearn.metrics import classification_report
-
 true_classes = test_generator.classes
 class_labels = list(test_generator.class_indices.keys())
 
