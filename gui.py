@@ -80,15 +80,16 @@ class App:
         try:
             resized_image = cv2.resize(image, (224, 224))  # Resize to match model input size
             resized_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)  # Convert to RGB
+            resized_image = resized_image.astype("float32") / 255.0  # Same scaling as training (rescale=1./255)
             resized_image = np.expand_dims(resized_image, axis=0)  # Add batch dimension
             
-            # Preprocess image if necessary (e.g., normalize pixel values)
             # Perform prediction
             predictions = self.model.predict(resized_image)
             
             # Process predictions to get emotions (example code, adjust as per your model's output)
             # For example, assuming the model outputs a softmax activation for emotions:
-            emotions = ["Angry", "Happy", "Sad", "Surprise", "Neutral"]
+            # Class order follows the training folders (alphabetical): Angry, Happy, Sad
+            emotions = ["Angry", "Happy", "Sad"]
             max_index = np.argmax(predictions)
             predicted_emotion = emotions[max_index]
             
@@ -101,7 +102,7 @@ class App:
             return None, image
 
     def display_image(self, image):
-        image = Image.fromarray(image)
+        image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # OpenCV uses BGR, PIL expects RGB
         image = ImageTk.PhotoImage(image)
         
         self.image_label = tk.Label(self.window, image=image)
