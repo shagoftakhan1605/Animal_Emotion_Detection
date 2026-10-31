@@ -6,6 +6,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Flatten, Dropout
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from sklearn.metrics import classification_report
 
 # Define the path to the dataset
 dataset_path = 'animal_emotions'
@@ -88,9 +89,7 @@ model_checkpoint = ModelCheckpoint('best_model.keras', monitor='val_loss', save_
 # Train the model
 history = model.fit(
     train_generator,
-    steps_per_epoch=train_generator.samples // batch_size,
-    validation_data=valid_generator,
-    validation_steps=valid_generator.samples // batch_size,
+    validation_data=valid_generator,  # uses all validation images (only ~30, fewer than one batch)
     epochs=50,
     callbacks=[early_stopping, model_checkpoint]
 )
@@ -99,12 +98,12 @@ history = model.fit(
 model.save('animal_emotion_detection_model.keras')  # Updated: Changed to .keras
 
 # Evaluate the model on the test set
-test_loss, test_acc = model.evaluate(test_generator, steps=test_generator.samples // batch_size)
+test_loss, test_acc = model.evaluate(test_generator)
 print(f'Test accuracy: {test_acc * 100:.2f}%')
 
 # Predict on the test set
 test_generator.reset()
-predictions = model.predict(test_generator, steps=test_generator.samples // batch_size)
+predictions = model.predict(test_generator)
 predicted_classes = tf.argmax(predictions, axis=-1)
 
 # Print the classification report
